@@ -34,5 +34,6 @@ require("lazy").setup({
 	require("plugins.autoformatting"),
 	require("plugins.undotree"),
 	require("plugins.harpoon"),
+	require("plugins.lualine"),
 	require("plugins.misc"),
 })
