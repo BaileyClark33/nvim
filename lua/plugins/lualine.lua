@@ -12,7 +12,7 @@ return {
 
 		local filename = {
 			"filename",
-			file_status = true, -- displays file status (readonly status, modified status)
+			file_status = false, -- displays file status (readonly status, modified status)
 			path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
 		}
 
@@ -40,49 +40,67 @@ return {
 
 		local colors = {
 			black = "#000000",
-			white = "#ffffff",
-			red = "#d10101",
-			green = "#4dfd08",
-			blue = "#0000ff",
-			yellow = "#fff840",
-			gray = "#828281",
-			darkgray = "#191919",
-			lightgray = "#c7c7c6",
-			inactivegray = "#a4a4a1",
+			white = "#edecec",
+			red = "#8b0000",
+			brightred = "#e00000",
+			shadedred = "#230000",
+			gray = "#b4b4b4",
+			darkgray = "#2e2d2d",
 		}
+
 		local tacocat = {
 			normal = {
 				a = { bg = colors.red, fg = colors.black, gui = "bold" },
 				b = { bg = colors.darkgray, fg = colors.gray },
-				c = { bg = colors.black, fg = colors.lightgray },
+				c = { bg = colors.shadedred, fg = colors.brightred },
 			},
 			insert = {
 				a = { bg = colors.red, fg = colors.black, gui = "bold" },
 				b = { bg = colors.darkgray, fg = colors.gray },
-				c = { bg = colors.black, fg = colors.lightgray },
+				c = { bg = colors.shadedred, fg = colors.brightred },
 			},
 			visual = {
 				a = { bg = colors.red, fg = colors.black, gui = "bold" },
 				b = { bg = colors.darkgray, fg = colors.gray },
-				c = { bg = colors.black, fg = colors.lightgray },
+				c = { bg = colors.shadedred, fg = colors.brightred },
 			},
 			replace = {
 				a = { bg = colors.red, fg = colors.black, gui = "bold" },
 				b = { bg = colors.darkgray, fg = colors.gray },
-				c = { bg = colors.black, fg = colors.lightgray },
+				c = { bg = colors.shadedred, fg = colors.brightred },
 			},
 			command = {
 				a = { bg = colors.red, fg = colors.black, gui = "bold" },
 				b = { bg = colors.darkgray, fg = colors.gray },
-				c = { bg = colors.black, fg = colors.lightgray },
+				c = { bg = colors.shadedred, fg = colors.brightred },
 			},
 			inactive = {
 				a = { bg = colors.red, fg = colors.black, gui = "bold" },
 				b = { bg = colors.darkgray, fg = colors.gray },
-				c = { bg = colors.black, fg = colors.lightgray },
+				c = { bg = colors.shadedred, fg = colors.brightred },
 			},
 		}
 
+		local tabs = {
+			"tabs",
+			tab_max_length = 40, -- Maximum width of each tab. The content will be shorten dynamically (example: apple/orange -> a/orange)
+			max_length = vim.o.columns / 3, -- Maximum width of tabs component.
+			-- Note:
+			-- It can also be a function that returns
+			-- the value of `max_length` dynamically.
+			mode = 1, -- 0: Shows tab_nr
+			-- 1: Shows tab_name
+			-- 2: Shows tab_nr + tab_name
+
+			path = 0, -- 0: just shows the filename
+			-- 1: shows the relative path and shorten $HOME to ~
+			-- 2: shows the full path
+			-- 3: shows the full path and shorten $HOME to ~
+
+			-- Automatically updates active tab color to match color of other components
+			-- (will be overidden if buffers_color is set)
+			use_mode_colors = false,
+		}
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
@@ -90,33 +108,26 @@ return {
 				-- Some useful glyphs:
 				-- https://www.nerdfonts.com/cheat-sheet
 				--        
-				section_separators = { left = "", right = "" },
-				component_separators = { left = "", right = "" },
-				disabled_filetypes = { "alpha", "neo-tree" },
+				component_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
+				disabled_filetypes = { "netrw", "neo-tree" },
 				always_divide_middle = true,
 			},
 			sections = {
 				lualine_a = { mode },
 				lualine_b = { "branch" },
-				lualine_c = { filename },
-				lualine_x = {
-					diagnostics,
-					diff,
-					{ "encoding", cond = hide_in_width },
-					{ "filetype", cond = hide_in_width },
-				},
-				lualine_y = { "location" },
+				lualine_c = { { "filetype", icon_only = true }, tabs },
+				lualine_x = { diagnostics, diff, "fileformat" },
+				lualine_y = { "filetype" },
 				lualine_z = { "progress" },
 			},
 			inactive_sections = {
-				lualine_a = {},
-				lualine_b = {},
-				lualine_c = { { "filename", path = 1 } },
-				lualine_x = { { "location", padding = 0 } },
-				lualine_y = {},
-				lualine_z = {},
+				lualine_a = { mode },
+				lualine_b = { "branch" },
+				lualine_c = { filename },
+				lualine_y = { "filetype" },
+				lualine_z = { "progress" },
 			},
-			tabline = {},
 			extensions = { "fugitive" },
 		})
 	end,
