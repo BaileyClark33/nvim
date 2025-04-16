@@ -97,10 +97,34 @@ return {
 			-- 2: shows the full path
 			-- 3: shows the full path and shorten $HOME to ~
 
-			-- Automatically updates active tab color to match color of other components
-			-- (will be overidden if buffers_color is set)
+			-- Automatically updates active tab color to match color of other components (will be overidden if buffers_color is set)
 			use_mode_colors = false,
+
+			show_modified_status = false, -- Shows a symbol next to the tab name if the file has been modified.
+			symbols = {
+				modified = "[+]", -- Text to show when the file is modified.
+			},
 		}
+		local name = {
+			"filename",
+			file_status = false, -- Displays file status (readonly status, modified status)
+			newfile_status = false, -- Display new file status (new file means no write after created)
+			path = 0, -- 0: Just the filename
+			-- 1: Relative path
+			-- 2: Absolute path
+			-- 3: Absolute path, with tilde as the home directory
+			-- 4: Filename and parent dir, with tilde as the home directory
+
+			shorting_target = 40, -- Shortens path to leave 40 spaces in the window
+			-- for other components. (terrible name, any suggestions?)
+			symbols = {
+				modified = "[+]", -- Text to show when the file is modified.
+				readonly = "[-]", -- Text to show when the file is non-modifiable or readonly.
+				unnamed = "[No Name]", -- Text to show for unnamed buffers.
+				newfile = "[New]", -- Text to show for newly created file before first write
+			},
+		}
+
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
@@ -118,14 +142,14 @@ return {
 				lualine_b = { "branch" },
 				lualine_c = { { "filetype", icon_only = true }, tabs },
 				lualine_x = { diagnostics, diff, "fileformat" },
-				lualine_y = { "filename" },
+				lualine_y = { name },
 				lualine_z = { "progress" },
 			},
 			inactive_sections = {
 				lualine_a = { mode },
 				lualine_b = { "branch" },
 				lualine_c = { { "filetype", icon_only = true }, tabs },
-				lualine_y = { "filename" },
+				lualine_y = { name },
 				lualine_z = { "progress" },
 			},
 			extensions = { "fugitive" },
