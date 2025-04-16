@@ -84,7 +84,7 @@ return {
 		local tabs = {
 			"tabs",
 			tab_max_length = 40, -- Maximum width of each tab. The content will be shorten dynamically (example: apple/orange -> a/orange)
-			max_length = vim.o.columns / 3, -- Maximum width of tabs component.
+			max_length = vim.o.columns, -- Maximum width of tabs component.
 			-- Note:
 			-- It can also be a function that returns
 			-- the value of `max_length` dynamically.
@@ -132,7 +132,7 @@ return {
 				-- Some useful glyphs:
 				-- https://www.nerdfonts.com/cheat-sheet
 				--        
-				component_separators = { left = "", right = "" },
+				component_separators = { left = " ", right = " " },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = { "netrw", "neo-tree" },
 				always_divide_middle = true,
