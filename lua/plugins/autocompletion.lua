@@ -2,6 +2,10 @@ return { -- Autocompletion
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
+		-- buffer based completion options
+		"hrsh7th/cmp-buffer",
+		-- path based completion options
+		"hrsh7th/cmp-path",
 		-- Snippet Engine & its associated nvim-cmp source
 		{
 			"L3MON4D3/LuaSnip",
@@ -109,6 +113,7 @@ return { -- Autocompletion
 				},
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
+				{ name = "buffer" },
 				{ name = "path" },
 				{ name = "nvim_lsp_signature_help" },
 			},

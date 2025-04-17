@@ -12,9 +12,9 @@ return {
 		-- Formatters & linters for mason to install
 		require("mason-null-ls").setup({
 			ensure_installed = {
-				-- 'prettier', -- ts/js formatter
+				"prettier", -- ts/js formatter
 				"stylua", -- lua formatter
-				-- 'eslint_d', -- ts/js linter
+				"eslint_d", -- ts/js linter
 				"shfmt", -- Shell formatter
 				"checkmake", -- linter for Makefiles
 				"ruff", -- Python linter and formatter
@@ -23,13 +23,12 @@ return {
 		})
 
 		local sources = {
-			diagnostics.checkmake,
-			formatting.prettier.with({ filetypes = { "html", "json", "yaml", "markdown" } }),
+			-- setup lua formatter
 			formatting.stylua,
-			formatting.shfmt.with({ args = { "-i", "4" } }),
-			formatting.terraform_fmt,
-			require("none-ls.formatting.ruff").with({ extra_args = { "--extend-select", "I" } }),
-			require("none-ls.formatting.ruff_format"),
+			-- setup eslint linter for javascript
+			require("none-ls.diagnostics.eslint_d"),
+			-- setup prettier to format languages that are not lua
+			formatting.prettier,
 		}
 
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -50,5 +49,7 @@ return {
 				end
 			end,
 		})
+
+		vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "[C]ode [F]ormat" })
 	end,
 }

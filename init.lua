@@ -1,5 +1,6 @@
 require("core.options")
 require("core.keymaps")
+require("core.autocmds")
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -22,18 +23,16 @@ vim.opt.rtp:prepend(lazypath)
 --
 --  To update plugins you can run
 --    :Lazy update
---
+
+local opts = {
+    change_detection = {
+        notify = false
+    },
+    checker = {
+        enabled = true,
+        notify = false
+    }
+}
+
 -- NOTE: Here is where you install your plugins.
-require("lazy").setup({
-	require("plugins.neotree"),
-	require("plugins.colortheme"),
-	require("plugins.treesitter"),
-	require("plugins.telescope"),
-	require("plugins.lsp"),
-	require("plugins.autocompletion"),
-	require("plugins.autoformatting"),
-	require("plugins.undotree"),
-	require("plugins.harpoon"),
-	require("plugins.lualine"),
-	require("plugins.misc"),
-})
+require("lazy").setup("plugins", opts)

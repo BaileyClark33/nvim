@@ -4,6 +4,9 @@ return {
 		"mfussenegger/nvim-jdtls",
 	},
 	{
+		"mfussenegger/nvim-dap",
+	},
+	{
 		"nvim-treesitter/playground",
 	},
 	{
