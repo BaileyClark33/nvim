@@ -25,13 +25,13 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 
 local opts = {
-    change_detection = {
-        notify = false
-    },
-    checker = {
-        enabled = true,
-        notify = false
-    }
+	change_detection = {
+		notify = false,
+	},
+	checker = {
+		enabled = true,
+		notify = false,
+	},
 }
 
 -- NOTE: Here is where you install your plugins.

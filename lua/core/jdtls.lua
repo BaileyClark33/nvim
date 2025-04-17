@@ -131,7 +131,9 @@ local function setup_jdtls()
 	local bundles = get_bundles()
 
 	-- Determine the root directory of the project by looking for these specific markers
-	local root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
+	-- local root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
+	local root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", "src" })
+		or vim.fn.getcwd()
 
 	-- Tell our JDTLS language features it is capable of
 	local capabilities = {
@@ -182,6 +184,9 @@ local function setup_jdtls()
 	-- Configure settings in the JDTLS server
 	local settings = {
 		java = {
+			project = {
+				sourcePaths = { "src" },
+			},
 			-- Enable code formatting
 			format = {
 				enabled = true,
