@@ -132,7 +132,7 @@ local function setup_jdtls()
 
 	-- Determine the root directory of the project by looking for these specific markers
 	-- local root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
-	local root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", "src" })
+	local root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", ".root" })
 		or vim.fn.getcwd()
 
 	-- Tell our JDTLS language features it is capable of
@@ -177,6 +177,8 @@ local function setup_jdtls()
 		launcher,
 		"-configuration",
 		os_config,
+		"-classpath",
+		"lib/*",
 		"-data",
 		workspace_dir,
 	}
