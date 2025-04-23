@@ -42,7 +42,7 @@ local function get_workspace()
 	-- Get the home directory of your operating system
 	local home = os.getenv("HOME")
 	-- Declare a directory where you would like to store project information
-	local workspace_path = home .. "/code/workspace/"
+	local workspace_path = home .. "/workspace/union/data-structures"
 	-- Determine the project name
 	local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 	-- Create the workspace directory by concatenating the designated workspace path and the project name
@@ -131,9 +131,8 @@ local function setup_jdtls()
 	local bundles = get_bundles()
 
 	-- Determine the root directory of the project by looking for these specific markers
-	-- local root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
-	local root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", ".classpath" })
-		or vim.fn.getcwd()
+	local root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
+	-- local root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", ".classpath" })
 
 	-- Tell our JDTLS language features it is capable of
 	local capabilities = {
