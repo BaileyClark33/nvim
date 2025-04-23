@@ -31,6 +31,10 @@ vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<cr>")
 
 vim.keymap.set("n", "x", '"_x')
 
+--jump remaps
+vim.keymap.set("n", "<A-o>", "<C-o>", { desc = "Jump back in jump list" })
+vim.keymap.set("n", "<A-i>", "<C-i>", { desc = "Jump forward in jump list" })
+
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
