@@ -195,6 +195,9 @@ local function setup_jdtls()
 				settings = {
 					url = vim.fn.stdpath("config") .. "/lang_servers/intellij-java-google-style.xml",
 					profile = "GoogleStyle",
+					indentation = {
+						spaces = 4, -- Set 4-space indentation
+					},
 				},
 			},
 			-- Enable downloading archives from eclipse automatically
@@ -307,6 +310,14 @@ local function setup_jdtls()
 		-- Refresh the codelens
 		-- Code lens enables features such as code reference counts, implemenation counts, and more.
 		vim.lsp.codelens.refresh()
+
+		-- Auto-format Java files before saving (format on save)
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			pattern = "*.java",
+			callback = function()
+				vim.lsp.buf.format({ async = false }) -- Format synchronously before saving
+			end,
+		})
 
 		-- Setup a function that automatically runs every time a java file is saved to refresh the code lens
 		vim.api.nvim_create_autocmd("BufWritePost", {

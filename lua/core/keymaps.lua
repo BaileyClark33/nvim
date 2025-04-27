@@ -14,8 +14,8 @@ vim.keymap.set("n", "-", "<cmd>Oil<CR>")
 vim.keymap.set("n", "<leader>fd", vim.cmd.Ex, { desc = "[F]ind [D]irectories" })
 
 --gradle testing
-vim.keymap.set("n", "<leader>gt", "<cmd>./gradlew test<CR>")
-vim.keymap.set("n", "<leader>gr", "<cmd>./gradlew run<CR>")
+vim.keymap.set("n", "<leader>gt", "<cmd>!./gradlew test > testing.txt<CR>")
+vim.keymap.set("n", "<leader>gr", "<cmd>!./gradlew run > running.txt<CR>")
 
 vim.keymap.set("i", "<A-e>", "<Esc>")
 vim.keymap.set("i", "<A-w>", "<Esc>:w<CR>")

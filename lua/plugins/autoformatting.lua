@@ -22,13 +22,28 @@ return {
 			automatic_installation = true,
 		})
 
+		-- Ruff, Isort Line Length Setting
+		local line_length = "114"
+
 		local sources = {
+			diagnostics.checkmake,
 			-- setup lua formatter
 			formatting.stylua,
 			-- setup eslint linter for javascript
 			require("none-ls.diagnostics.eslint_d"),
 			-- setup prettier to format languages that are not lua
-			formatting.prettier,
+			formatting.prettier.with({ filetypes = { "html", "json", "yaml", "markdown" } }),
+
+			formatting.shfmt.with({ args = { "-i", "4" } }),
+			formatting.terraform_fmt,
+
+			-- Python formatter and linter setup
+			require("none-ls.formatting.ruff").with({
+				extra_args = { "--line-length", line_length, "--profile", "black", "--fix-imports" },
+			}),
+			require("none-ls.formatting.ruff_format"),
+
+			-- Add  to format Java files
 		}
 
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
