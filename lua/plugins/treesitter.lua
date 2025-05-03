@@ -26,7 +26,6 @@ return {
 				"bash",
 				"tsx",
 				"css",
-				"html",
 				"c",
 				"luadoc",
 				"markdown",

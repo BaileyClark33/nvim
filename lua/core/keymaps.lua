@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+vim.keymap.set("n", "<leader>lz", ":Lazy<CR>")
 
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
@@ -17,7 +18,7 @@ vim.keymap.set("n", "<leader>fd", vim.cmd.Ex, { desc = "[F]ind [D]irectories" })
 vim.keymap.set("n", "<leader>gt", "<cmd>!./gradlew test > testing.txt<CR>")
 vim.keymap.set("n", "<leader>gr", "<cmd>!./gradlew run > running.txt<CR>")
 
-vim.keymap.set("i", "<A-e>", "<Esc>")
+vim.keymap.set({ "i", "t", "n" }, "<A-e>", "<Esc>")
 vim.keymap.set("i", "<A-w>", "<Esc>:w<CR>")
 vim.keymap.set("n", "<A-w>", ":w<CR>")
 vim.keymap.set("n", "<A-q>", ":wq<CR>")

@@ -4,6 +4,7 @@ vim.opt.relativenumber = true
 vim.opt.number = true
 
 vim.g.have_nerd_font = true
+vim.opt.background = "dark"
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
