@@ -10,16 +10,14 @@ return {
 					"citruszest",
 					"cyberdream",
 					"NeoSolarized",
-					"miasma",
 					"rose-pine",
 					"one_monokai",
+					"miasma",
+					"industry",
 					"aurora",
 					"tokyonight",
-					"nightfox",
 					"onedark",
-					"vscode",
 					"bluloco",
-					"hybrid",
 				},
 				livePreview = true, -- Apply theme while picking. Default to true.
 			})
@@ -59,28 +57,11 @@ return {
 		end,
 	},
 	{
-		"EdenEast/nightfox.nvim",
-		config = function()
-			require("nightfox").setup({
-				options = { transparent = true },
-			})
-		end,
-	}, -- lazy
-	-- Using Lazy
-	{
 		"navarasu/onedark.nvim",
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
 			require("onedark").setup({
 				style = "darker",
-				transparent = true,
-			})
-		end,
-	},
-	{
-		"Mofiqul/vscode.nvim",
-		config = function()
-			require("vscode").setup({
 				transparent = true,
 			})
 		end,
@@ -106,12 +87,6 @@ return {
 				guicursor = false,
 			})
 		end,
-	},
-	{
-		"HoNamDuong/hybrid.nvim",
-		lazy = false,
-		priority = 1000,
-		opts = { transparent = true },
 	},
 	{
 		"zootedb0t/citruszest.nvim",
