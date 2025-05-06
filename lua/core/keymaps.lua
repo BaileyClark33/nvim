@@ -71,6 +71,8 @@ vim.keymap.set("n", "<leader>ch", "c0")
 vim.keymap.set("n", "<leader>cl", "c$")
 vim.keymap.set("n", "<leader>dh", "d0")
 vim.keymap.set("n", "<leader>dl", "d$")
+vim.keymap.set("n", "<leader>yh", "y0")
+vim.keymap.set("n", "<leader>yl", "y$")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
