@@ -7,34 +7,20 @@ return {
 				-- Your list of installed colorschemes.
 				themes = {
 					"gruvbox",
-					"tokyonight",
+					"citruszest",
+					"cyberdream",
+					"NeoSolarized",
 					"rose-pine",
+					"one_monokai",
+					"aurora",
+					"tokyonight",
 					"nightfox",
 					"onedark",
 					"vscode",
-					"cyberdream",
-					"miasma",
 					"bluloco",
-					"oldworld",
 					"hybrid",
-					"moonlight",
-					"arctic",
-					"citruszest",
-					"NeoSolarized",
-					"neon",
-					"monokai-nightasty",
-					"aurora",
-					"nightfall",
-					"one_monokai",
 				},
 				livePreview = true, -- Apply theme while picking. Default to true.
-				globalAfter = [[
-                                vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-                                vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-                                vim.api.nvim_set_hl(0, "LineNr", { fg = "#888888", bg = "none" })
-                                vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#aaaaaa", bg = "none", bold = true })
-                                vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
-                              ]],
 			})
 			vim.keymap.set("n", "<leader>cs", ":Themery<CR>")
 		end,
@@ -109,16 +95,6 @@ return {
 		end,
 	},
 	{
-		"xero/miasma.nvim",
-		branch = "dev",
-		dependencies = {
-			"rktjmp/lush.nvim",
-			"rktjmp/shipwright.nvim",
-		},
-		lazy = false,
-		priority = 1000,
-	},
-	{
 		"uloco/bluloco.nvim",
 		lazy = false,
 		priority = 1000,
@@ -131,28 +107,10 @@ return {
 		end,
 	},
 	{
-		"dgox16/oldworld.nvim",
-		lazy = false,
-		priority = 1000,
-	},
-	{
 		"HoNamDuong/hybrid.nvim",
 		lazy = false,
 		priority = 1000,
 		opts = { transparent = true },
-	},
-	{
-		"shaunsingh/moonlight.nvim",
-		config = function()
-			vim.g.moonlight_disable_background = true
-		end,
-	},
-	{
-		"rockyzhang24/arctic.nvim",
-		dependencies = { "rktjmp/lush.nvim" },
-		name = "arctic",
-		branch = "main",
-		priority = 1000,
 	},
 	{
 		"zootedb0t/citruszest.nvim",
@@ -172,19 +130,6 @@ return {
 		priority = 1000, -- make sure to load this before all the other start plugins
 	},
 	{
-		"rafamadriz/neon",
-		config = function()
-			vim.g.neon_italic_keyword = false
-			vim.g.neon_italic_function = false
-			vim.g.neon_transparent = true
-		end,
-	},
-	{
-		"polirritmico/monokai-nightasty.nvim",
-		lazy = false,
-		priority = 1000,
-	},
-	{
 		"ray-x/aurora",
 		init = function()
 			vim.g.aurora_italic = 1
@@ -194,11 +139,6 @@ return {
 		config = function()
 			vim.api.nvim_set_hl(0, "@number", { fg = "#e933e3" })
 		end,
-	},
-	{
-		"2giosangmitom/nightfall.nvim",
-		lazy = false,
-		priority = 1000,
 	},
 	{
 		"cpea2506/one_monokai.nvim",
