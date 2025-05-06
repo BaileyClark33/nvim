@@ -10,6 +10,7 @@ return {
 					"citruszest",
 					"cyberdream",
 					"NeoSolarized",
+					"miasma",
 					"rose-pine",
 					"one_monokai",
 					"aurora",
@@ -147,5 +148,10 @@ return {
 				transparent = true,
 			})
 		end,
+	},
+	{
+		"xero/miasma.nvim",
+		lazy = false,
+		priority = 1000,
 	},
 }

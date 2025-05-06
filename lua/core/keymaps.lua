@@ -14,6 +14,14 @@ vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 vim.keymap.set("n", "-", "<cmd>Oil<CR>")
 vim.keymap.set("n", "<leader>fd", vim.cmd.Ex, { desc = "[F]ind [D]irectories" })
 
+vim.keymap.set("n", "<leader>bg", function()
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+	vim.api.nvim_set_hl(0, "LineNr", { fg = "#888888", bg = "none" })
+	vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#aaaaaa", bg = "none", bold = true })
+	vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+end)
+
 --gradle testing
 vim.keymap.set("n", "<leader>gt", "<cmd>!./gradlew test > testing.txt<CR>")
 vim.keymap.set("n", "<leader>gr", "<cmd>!./gradlew run > running.txt<CR>")
