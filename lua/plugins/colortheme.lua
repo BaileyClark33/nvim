@@ -23,6 +23,7 @@ return {
                                   local hl = vim.api.nvim_set_hl
                                   hl(0, "Normal", { bg = "none" })
                                   hl(0, "NormalNC", { bg = "none" })
+                                  hl(0, "EndOfBuffer", { bg = "none", fg = "none" })
                                   hl(0, "SignColumn", { bg = "none" })
                                   hl(0, "LineNr", { fg = "#888888", bg = "none" })
                                   hl(0, "NormalFloat", { bg = "none" })
