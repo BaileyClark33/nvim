@@ -15,11 +15,15 @@ vim.keymap.set("n", "-", "<cmd>Oil<CR>")
 vim.keymap.set("n", "<leader>fd", vim.cmd.Ex, { desc = "[F]ind [D]irectories" })
 
 vim.keymap.set("n", "<leader>bg", function()
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-	vim.api.nvim_set_hl(0, "LineNr", { fg = "#888888", bg = "none" })
-	vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#aaaaaa", bg = "none", bold = true })
-	vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+	local hl = vim.api.nvim_set_hl
+	hl(0, "Normal", { bg = "none" })
+	hl(0, "NormalNC", { bg = "none" })
+	hl(0, "SignColumn", { bg = "none" })
+	hl(0, "LineNr", { fg = "#a3a3a3", bg = "none" })
+	hl(0, "NormalFloat", { bg = "none" })
+	hl(0, "FloatBorder", { bg = "none" })
+	hl(0, "Pmenu", { bg = "none" })
+	hl(0, "PmenuSel", { bg = "none" })
 end)
 
 --gradle testing

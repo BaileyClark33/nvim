@@ -12,13 +12,23 @@ return {
 					"NeoSolarized",
 					"rose-pine",
 					"one_monokai",
+					"aurora",
 					"miasma",
 					"industry",
-					"aurora",
 					"tokyonight",
 					"onedark",
 					"bluloco",
 				},
+				globalAfter = [[
+                                  local hl = vim.api.nvim_set_hl
+                                  hl(0, "Normal", { bg = "none" })
+                                  hl(0, "NormalNC", { bg = "none" })
+                                  hl(0, "SignColumn", { bg = "none" })
+                                  hl(0, "LineNr", { fg = "#888888", bg = "none" })
+                                  hl(0, "NormalFloat", { bg = "none" })
+                                  hl(0, "FloatBorder", { bg = "none" })
+                                  hl(0, "Pmenu", { bg = "none" })
+                              ]],
 				livePreview = true, -- Apply theme while picking. Default to true.
 			})
 			vim.keymap.set("n", "<leader>cs", ":Themery<CR>")
@@ -52,7 +62,7 @@ return {
 		name = "rose-pine",
 		config = function()
 			require("rose-pine").setup({
-				styles = { italic = false, transparency = true },
+				styles = { italic = true, transparency = true },
 			})
 		end,
 	},
