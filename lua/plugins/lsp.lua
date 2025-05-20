@@ -1,16 +1,28 @@
 return {
 	{
-		"jay-babu/mason-nvim-dap.nvim",
-        dependencies = { "williamboman/mason.nvim" },
-		config = function()
-			require("mason-nvim-dap").setup({
-				ensure_installed = { "java-debug-adapter", "java-test" },
-			})
-		end,
-	},
-	{
 		"mfussenegger/nvim-jdtls",
 		dependencies = { "mfussenegger/nvim-dap" },
+	},
+	{
+		"nvim-java/nvim-java",
+		dependencies = {
+			"nvim-java/lua-async-await",
+			"nvim-java/nvim-java-core",
+			"nvim-java/nvim-java-test",
+			"nvim-java/nvim-java-dap",
+			"MunifTanjim/nui.nvim",
+			"neovim/nvim-lspconfig",
+			"mfussenegger/nvim-dap",
+			{
+				"williamboman/mason.nvim",
+				opts = {
+					registries = {
+						"github:nvim-java/mason-registry",
+						"github:mason-org/mason-registry",
+					},
+				},
+			},
+		},
 	},
 	{
 		-- Main LSP Configuration

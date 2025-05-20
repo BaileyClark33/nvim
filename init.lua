@@ -1,6 +1,5 @@
 require("core.options")
 require("core.keymaps")
-require("core.autocmds")
 require("core.floaterminal")
 
 -- [[ Install `lazy.nvim` plugin manager ]]

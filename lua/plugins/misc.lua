@@ -12,10 +12,6 @@ return {
 		end,
 	},
 	{
-		"echasnovski/mini.nvim",
-		version = "*",
-	},
-	{
 		"mfussenegger/nvim-jdtls",
 	},
 	{
