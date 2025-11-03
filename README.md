@@ -1,3 +1,3 @@
 # nvim
 
-tacocat config for neovim
+My config for NeoVim
