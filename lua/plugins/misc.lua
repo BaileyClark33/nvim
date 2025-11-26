@@ -1,26 +1,6 @@
 -- Standalone plugins with less than 10 lines of config go here
 return {
 	{
-		"startup-nvim/startup.nvim",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope-file-browser.nvim",
-		},
-		config = function()
-			require("startup").setup({ theme = "dashboard" }) -- put theme name here
-		end,
-	},
-	{
-		"mfussenegger/nvim-jdtls",
-	},
-	{
-		"mfussenegger/nvim-dap",
-	},
-	{
-		"nvim-treesitter/playground",
-	},
-	{
 		"christoomey/vim-tmux-navigator",
 		lazy = false,
 		cmd = {
@@ -40,25 +20,9 @@ return {
 		},
 	},
 	{
-		-- Powerful Git integration for Vim
-		"tpope/vim-fugitive",
+		"mbbill/undotree",
 		config = function()
-			vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
-		end,
-	},
-	{
-		-- GitHub integration for vim-fugitive
-		"tpope/vim-rhubarb",
-	},
-	{
-		-- Hints keybinds
-		"folke/which-key.nvim",
-	},
-	{
-		-- High-performance color highlighter
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
+			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 		end,
 	},
 }

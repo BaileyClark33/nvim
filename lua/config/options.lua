@@ -1,6 +1,7 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+vim.opt.cursorline = false
 vim.opt.number = true
 
 vim.g.have_nerd_font = true

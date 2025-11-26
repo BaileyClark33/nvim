@@ -1,10 +1,17 @@
 return {
 	"ThePrimeagen/harpoon",
 	config = function()
+		require("harpoon").setup({
+			menu = {
+				width = 70,
+				height = 10,
+			},
+		})
+
 		local mark = require("harpoon.mark")
 		local ui = require("harpoon.ui")
 
-		vim.keymap.set("n", "<leader>a", mark.add_file)
+		vim.keymap.set("n", "<leader>ha", mark.add_file)
 		vim.keymap.set("n", "<A-r>", ui.toggle_quick_menu)
 
 		vim.keymap.set("n", "<A-a>", function()
