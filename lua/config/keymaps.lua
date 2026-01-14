@@ -9,19 +9,7 @@ vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 --oil and file explorer
 vim.keymap.set("n", "-", "<cmd>Oil<CR>")
 vim.keymap.set("n", "<leader>fd", vim.cmd.Ex, { desc = "[F]ind [D]irectories" })
-
-vim.keymap.set("n", "<leader>bg", function()
-	local hl = vim.api.nvim_set_hl
-	hl(0, "Normal", { bg = "none" })
-	hl(0, "NormalNC", { bg = "none" })
-	hl(0, "EndOfBuffer", { bg = "none", fg = "none" })
-	hl(0, "SignColumn", { bg = "none" })
-	hl(0, "LineNr", { fg = "#a3a3a3", bg = "none" })
-	hl(0, "NormalFloat", { bg = "none" })
-	hl(0, "FloatBorder", { bg = "none" })
-	hl(0, "Pmenu", { bg = "none" })
-	hl(0, "PmenuSel", { bg = "none" })
-end)
+vim.keymap.set("n", "<leader>m", "<cmd>messages<CR>")
 
 vim.keymap.set("n", "<A-q>", function()
 	vim.cmd("wall")
@@ -103,6 +91,19 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+vim.keymap.set("n", "<leader>bg", function()
+	local hl = vim.api.nvim_set_hl
+	hl(0, "Normal", { bg = "none" })
+	hl(0, "NormalNC", { bg = "none" })
+	hl(0, "EndOfBuffer", { bg = "none", fg = "none" })
+	hl(0, "SignColumn", { bg = "none" })
+	hl(0, "LineNr", { fg = "#a3a3a3", bg = "none" })
+	hl(0, "NormalFloat", { bg = "none" })
+	hl(0, "FloatBorder", { bg = "none" })
+	hl(0, "Pmenu", { bg = "none" })
+	hl(0, "PmenuSel", { bg = "none" })
+end)
 
 -- tabs
 vim.keymap.set("n", "<leader>to", ":tabnew<CR>")
