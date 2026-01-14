@@ -24,10 +24,10 @@ return {
 		ft = { "csv" },
 		opts = {
 			keymaps = {
-				jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
-				jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
-				jump_next_row = { "<Enter>", mode = { "n", "v" } },
-				jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
+				jump_next_field_end = { "<Enter>", mode = { "n", "v" } },
+				jump_prev_field_end = { "<Tab>", mode = { "n", "v" } },
+				jump_next_row = { "<S-Enter>", mode = { "n", "v" } },
+				jump_prev_row = { "<S-Tab>", mode = { "n", "v" } },
 			},
 			view = {
 				display_mode = "border",
