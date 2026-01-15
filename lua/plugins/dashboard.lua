@@ -1,62 +1,108 @@
-local dashboard_width = 90
+local dashboard_width = 80
+local chars_length = vim.fn.strchars
 
 local function verse_data()
 	local cross_icon = "✝️"
 	local book_icon = "📖"
+	local icon_width = 2
 	local handle = io.popen("curl -s --max-time 5 https://bible-api.com/data/oeb-us/random")
 	local result = handle:read("*a")
 	handle:close()
 
-	local max_width = 100
+	local max_width = 90
 
 	local ok, data = pcall(vim.fn.json_decode, result)
 	if not (ok and data and data.random_verse and data.random_verse.text) then
+		-- if true then
 		local text = cross_icon .. "  Could not fetch verse  " .. cross_icon
-		local padding = math.floor((dashboard_width - #text) / 2)
+		local padding = math.floor((dashboard_width - chars_length(text)) / 2)
 		text = string.rep(" ", padding) .. "    " .. text
 		return {
 			text,
-			width = dashboard_width,
+			width = chars_length(text),
 			hl = "SnacksDashboardDesc",
 		}
 	end
 
-	local verse_text = data.random_verse.text:gsub("\n", " ")
+	local verse_text = data.random_verse.text:gsub("\n", " "):sub(1, -2)
+
 	local reference =
 		string.format("%s %d:%d", data.random_verse.book, data.random_verse.chapter, data.random_verse.verse)
 
 	local lines = {}
-	local current_line = book_icon .. " " .. reference .. " " .. book_icon .. " " .. "-"
+	local title_line = book_icon .. " " .. reference .. " " .. book_icon
+	local title_length = chars_length(reference) + 2 + (2 * icon_width)
+	if title_length % 2 == 0 then
+		title_line = title_line .. " "
+		title_length = title_length + 1
+	end
+	table.insert(lines, title_line)
 
+	local current_line = ""
+	local verse_width = title_length
 	for word in verse_text:gmatch("%S+") do
-		if #current_line + #word > max_width then
+		if chars_length(current_line) + chars_length(word) > max_width then
+			current_line = current_line:sub(1, -2)
+			if chars_length(current_line) % 2 == 0 then
+				current_line = current_line .. " "
+			end
+			if chars_length(current_line) > verse_width then
+				verse_width = chars_length(current_line)
+			end
 			table.insert(lines, current_line)
-			current_line = word
+			current_line = word .. " "
 		else
-			current_line = current_line .. " " .. word
+			current_line = current_line .. word .. " "
 		end
+	end
+	current_line = current_line:sub(1, -2)
+	if chars_length(current_line) % 2 == 0 then
+		current_line = current_line .. " "
+	end
+	if chars_length(current_line) > verse_width then
+		verse_width = chars_length(current_line)
 	end
 	table.insert(lines, current_line)
+	verse_width = verse_width + 4
 
-	local verse_width = 0
-	for _, line in ipairs(lines) do
-		verse_width = math.max(verse_width, #line)
+	local outside_padding = math.floor((max_width - verse_width) / 2)
+	if outside_padding < 0 then
+		outside_padding = 0
 	end
 	for i, line in ipairs(lines) do
-		local padding = 2
-		if #lines >= 2 and #line < max_width then
-			padding = math.floor((max_width - #line) / 2)
+		print(chars_length(line))
+		local diff = 0
+		if i == 1 then
+			diff = verse_width - title_length
+		else
+			diff = verse_width - chars_length(line)
 		end
-		local right_padding = padding
-		if #line % 2 == 1 then
-			right_padding = right_padding - 1
-		end
-		lines[i] = cross_icon .. string.rep(" ", padding) .. line .. string.rep(" ", right_padding) .. cross_icon
+		local padding = math.floor(diff / 2)
+		print(
+			"pad:",
+			padding,
+			"diff:",
+			diff,
+			"line:",
+			chars_length(line),
+			"verse_width:",
+			verse_width,
+			"title_length:",
+			title_length
+		)
+		lines[i] = string.rep(" ", outside_padding)
+			.. cross_icon
+			.. string.rep(" ", padding)
+			.. line
+			.. string.rep(" ", padding)
+			.. cross_icon
 	end
+
+	print(vim.inspect(lines))
 
 	return {
 		table.concat(lines, "\n"),
-		width = verse_width,
+		width = max_width,
 		hl = "SnacksDashboardDesc",
 	}
 end
@@ -71,12 +117,12 @@ return {
 				width = dashboard_width,
 				preset = {
 					header = [[
-           ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗          Z
-           ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║      Z    
-           ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║   z       
-           ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ z         
-           ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║           
-           ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝           
+            ████████╗ █████╗  ██████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗          Z
+            ╚══██╔══╝██╔══██╗██╔════╝██╔═══██╗██║   ██║██║████╗ ████║      Z    
+               ██║   ███████║██║     ██║   ██║██║   ██║██║██╔████╔██║   z       
+               ██║   ██╔══██║██║     ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ z         
+               ██║   ██║  ██║╚██████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║           
+               ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝           
 ]],
 				},
 				sections = {
