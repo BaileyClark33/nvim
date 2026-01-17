@@ -14,9 +14,11 @@ local function verse_data()
 	local ok, data = pcall(vim.fn.json_decode, result)
 	if not (ok and data and data.random_verse and data.random_verse.text) then
 		-- if true then
-		local text = cross_icon .. "  Could not fetch verse  " .. cross_icon
-		local padding = math.floor((dashboard_width - chars_length(text)) / 2)
-		text = string.rep(" ", padding) .. "    " .. text
+		local message = "  Jesus is King  "
+		local text = cross_icon .. message .. cross_icon
+		local text_length = icon_width * 2 + chars_length(message)
+		local padding = math.floor((dashboard_width - text_length) / 2)
+		text = string.rep(" ", padding) .. text
 		return {
 			text,
 			width = chars_length(text),
@@ -70,7 +72,6 @@ local function verse_data()
 		outside_padding = 0
 	end
 	for i, line in ipairs(lines) do
-		print(chars_length(line))
 		local diff = 0
 		if i == 1 then
 			diff = verse_width - title_length
@@ -78,18 +79,6 @@ local function verse_data()
 			diff = verse_width - chars_length(line)
 		end
 		local padding = math.floor(diff / 2)
-		print(
-			"pad:",
-			padding,
-			"diff:",
-			diff,
-			"line:",
-			chars_length(line),
-			"verse_width:",
-			verse_width,
-			"title_length:",
-			title_length
-		)
 		lines[i] = string.rep(" ", outside_padding)
 			.. cross_icon
 			.. string.rep(" ", padding)
@@ -97,8 +86,6 @@ local function verse_data()
 			.. string.rep(" ", padding)
 			.. cross_icon
 	end
-
-	print(vim.inspect(lines))
 
 	return {
 		table.concat(lines, "\n"),
