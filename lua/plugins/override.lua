@@ -1,5 +1,36 @@
 return {
 	{
+		"folke/sidekick.nvim",
+		keys = {
+			{
+				"<A-i>",
+				function()
+					-- if there is a next edit, jump to it, otherwise apply it if any
+					if not require("sidekick").nes_jump_or_apply() then
+						return "<Tab>" -- fallback to normal tab
+					end
+				end,
+				expr = true,
+				desc = "Goto/Apply Next Edit Suggestion",
+			},
+			{
+				"<A-t>",
+				function()
+					require("sidekick.cli").toggle()
+				end,
+				desc = "Sidekick Toggle",
+				mode = { "n", "t", "i", "x" },
+			},
+			{
+				"<leader>ac",
+				function()
+					require("sidekick.cli").toggle({ name = "copilot", focus = true })
+				end,
+				desc = "Sidekick Toggle Copilot",
+			},
+		},
+	},
+	{
 		"saghen/blink.cmp",
 		dependencies = {
 			"rafamadriz/friendly-snippets",
@@ -70,6 +101,29 @@ return {
 				end,
 				mode = { "n", "x", "v" },
 				desc = "Open Yank History",
+			},
+		},
+	},
+	{
+		"folke/snacks.nvim",
+		optional = true,
+		opts = {
+			picker = {
+				actions = {
+					sidekick_send = function(...)
+						return require("sidekick.cli.picker.snacks").send(...)
+					end,
+				},
+				win = {
+					input = {
+						keys = {
+							["<a-a>"] = {
+								"sidekick_send",
+								mode = { "n", "i" },
+							},
+						},
+					},
+				},
 			},
 		},
 	},
