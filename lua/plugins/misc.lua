@@ -1,6 +1,49 @@
 -- Standalone plugins with less than 10 lines of config go here
 return {
 	{
+		{
+			"tpope/vim-dadbod",
+			dependencies = {
+				"kristijanhusak/vim-dadbod-ui",
+				"kristijanhusak/vim-dadbod-completion",
+			},
+			config = function()
+				-- Set up dadbod-ui
+				vim.g.db_ui_use_nerd_fonts = 1
+				vim.g.db_ui_show_database_icon = 1
+
+				-- Auto-completion setup
+				vim.api.nvim_create_autocmd("FileType", {
+					pattern = { "sql", "mysql", "plsql" },
+					callback = function()
+						require("cmp").setup.buffer({
+							sources = {
+								{ name = "vim-dadbod-completion" },
+								{ name = "buffer" },
+							},
+						})
+					end,
+				})
+			end,
+			keys = {
+				{ "<leader>Db", "<cmd>DBUIToggle<cr>", desc = "Toggle DBUI" },
+				{ "<leader>Df", "<cmd>DBUIFindBuffer<cr>", desc = "Find DB Buffer" },
+				{ "<leader>Dr", "<cmd>DBUIRenameBuffer<cr>", desc = "Rename DB Buffer" },
+				{ "<leader>Dl", "<cmd>DBUILastQueryInfo<cr>", desc = "Last Query Info" },
+			},
+		},
+	},
+	{
+		"rest-nvim/rest.nvim",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			opts = function(_, opts)
+				opts.ensure_installed = opts.ensure_installed or {}
+				table.insert(opts.ensure_installed, "http")
+			end,
+		},
+	},
+	{
 		"christoomey/vim-tmux-navigator",
 		lazy = false,
 		cmd = {
