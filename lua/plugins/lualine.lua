@@ -142,22 +142,20 @@ return {
 					return require("sidekick.status").get() ~= nil
 				end,
 				color = function()
-					local status = require("sidekick.status").get()
-					local hl = status and (status.busy and "DiagnosticWarn" or vim.tbl_get(icons, status.kind, 2))
-					return { fg = Snacks.util.color(hl) }
+					return { fg = colors.black }
 				end,
 			}
 
 			local sidekick_cli = {
 				function()
 					local status = require("sidekick.status").cli()
-					return " " .. (#status > 1 and #status or "")
+					return "Copilot" .. (#status > 1 and #status or "")
 				end,
 				cond = function()
 					return #require("sidekick.status").cli() > 0
 				end,
 				color = function()
-					return { fg = Snacks.util.color("Special") }
+					return { fg = colors.black }
 				end,
 			}
 
@@ -168,7 +166,7 @@ return {
 					-- Some useful glyphs:
 					-- https://www.nerdfonts.com/cheat-sheet
 					--        
-					component_separators = { left = " ", right = " " },
+					component_separators = { left = "|", right = "|" },
 					section_separators = { left = "", right = "" },
 					disabled_filetypes = { "netrw", "neo-tree" },
 					always_divide_middle = true,
