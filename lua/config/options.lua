@@ -6,6 +6,7 @@ vim.opt.number = true
 
 vim.g.have_nerd_font = true
 vim.opt.background = "dark"
+
 vim.g.ai_cmp = true
 
 vim.opt.tabstop = 4
