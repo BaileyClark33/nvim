@@ -1,3 +1,7 @@
+.lazy/
+.mason/
+.netrwhist
+.DS_Store
 tt.*
 .tests
 doc/tags

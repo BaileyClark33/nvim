@@ -1,5 +1,19 @@
 return {
 	{
+		"stevearc/conform.nvim",
+		opts = function()
+			local opts = {
+				formatters_by_ft = {
+					python = { "black", "isort" },
+					lua = { "stylua" },
+					fish = { "fish_indent" },
+					sh = { "shfmt" },
+				},
+			}
+			return opts
+		end,
+	},
+	{
 		"folke/sidekick.nvim",
 		keys = {
 			{

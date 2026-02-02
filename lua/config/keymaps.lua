@@ -21,6 +21,8 @@ vim.keymap.set("i", "<A-q>", function()
 	vim.cmd("qall")
 end, { silent = true })
 
+vim.keymap.set("n", "<leader>rb", "<cmd>edit!<cr>", { desc = "Restart Buffer (force)" })
+
 vim.keymap.set({ "i", "t", "n" }, "<A-e>", "<Esc>")
 vim.keymap.set("i", "<A-w>", "<Esc>:w<CR>")
 vim.keymap.set("n", "<A-w>", ":w<CR>")
@@ -90,7 +92,7 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>bg", function()
 	local hl = vim.api.nvim_set_hl
@@ -104,9 +106,3 @@ vim.keymap.set("n", "<leader>bg", function()
 	hl(0, "Pmenu", { bg = "none" })
 	hl(0, "PmenuSel", { bg = "none" })
 end)
-
--- tabs
-vim.keymap.set("n", "<leader>to", ":tabnew<CR>")
-vim.keymap.set("n", "<leader>tx", ":tabclose<CR>")
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>")
-vim.keymap.set("n", "<leader>tp", ":tabp<CR>")

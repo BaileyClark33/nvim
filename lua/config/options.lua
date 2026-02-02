@@ -1,4 +1,3 @@
-vim.opt.nu = true
 vim.opt.relativenumber = true
 
 vim.opt.cursorline = false
@@ -19,7 +18,6 @@ vim.opt.list = false
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
-vim.opt.linebreak = true
 
 vim.opt.fillchars = { eob = " " } -- Change ~ to >
 
@@ -33,7 +31,6 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
-vim.opt.autoindent = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
