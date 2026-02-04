@@ -24,8 +24,8 @@ end, { silent = true })
 vim.keymap.set("n", "<leader>rb", "<cmd>edit!<cr>", { desc = "Restart Buffer (force)" })
 
 vim.keymap.set({ "i", "t", "n" }, "<A-e>", "<Esc>")
-vim.keymap.set("i", "<A-w>", "<Esc>:w<CR>")
-vim.keymap.set("n", "<A-w>", ":w<CR>")
+vim.keymap.set("i", "<A-w>", "<Esc><cmd>w<CR>")
+vim.keymap.set("n", "<A-w>", "<cmd>w<CR>")
 vim.keymap.set({ "n", "v" }, ";", ":")
 vim.keymap.set({ "n", "v" }, ":", ";")
 
