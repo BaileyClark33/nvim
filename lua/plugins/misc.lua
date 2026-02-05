@@ -2,7 +2,6 @@
 return {
 	{
 		"christoomey/vim-tmux-navigator",
-		lazy = false,
 		cmd = {
 			"TmuxNavigateLeft",
 			"TmuxNavigateDown",
@@ -18,6 +17,11 @@ return {
 			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
 			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
+		config = function()
+			vim.g.tmux_navigator_save_on_switch = 2
+			-- 1: saves current buffer if changed
+			-- 2: saves all buffers
+		end,
 	},
 	{
 		"mbbill/undotree",
