@@ -30,8 +30,8 @@ return {
 		-- Keymaps
 		vim.keymap.set("n", "<leader>ro", "<cmd>Rest open<CR>", { desc = "Rest Open" })
 		vim.keymap.set("n", "<leader>rr", "<cmd>Rest run<CR>", { desc = "Rest Run" })
-		vim.keymap.set("n", "<leader>rl", "<cmd>Rest last<CR>", { desc = "Rest Run Last Request" })
-		vim.keymap.set("n", "<leader>rL", "<cmd>Rest logs<CR>", { desc = "Rest Logs" })
+		vim.keymap.set("n", "<leader>rp", "<cmd>Rest last<CR>", { desc = "Rest Run Previous Request" })
+		vim.keymap.set("n", "<leader>rl", "<cmd>Rest logs<CR>", { desc = "Rest Logs" })
 		vim.keymap.set("n", "<leader>rc", "<cmd>Rest cookies<CR>", { desc = "Rest Cookies" })
 		vim.keymap.set("n", "<leader>ree", "<cmd>Rest env show<CR>", { desc = "Rest env Show" })
 		vim.keymap.set("n", "<leader>res", "<cmd>Rest env select<CR>", { desc = "Rest env Select" })
