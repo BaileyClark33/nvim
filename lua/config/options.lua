@@ -8,6 +8,8 @@ vim.opt.background = "dark"
 
 vim.g.ai_cmp = true
 
+vim.opt.clipboard = ""
+
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -42,11 +44,3 @@ vim.opt.updatetime = 50
 
 -- Decrease mapped sequence wait time
 vim.opt.timeoutlen = 300
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-})
