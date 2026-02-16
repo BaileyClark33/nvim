@@ -42,6 +42,13 @@ return {
 				end,
 				desc = "Sidekick Toggle Copilot",
 			},
+			{
+				"<leader>ao",
+				function()
+					require("sidekick.cli").toggle({ name = "opencode", focus = true })
+				end,
+				desc = "Sidekick Toggle Opencode",
+			},
 		},
 	},
 	{

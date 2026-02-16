@@ -149,7 +149,7 @@ return {
 			local sidekick_cli = {
 				function()
 					local status = require("sidekick.status").cli()
-					return "Copilot" .. (#status > 1 and #status or "")
+					return "Sidekick" .. (#status > 1 and #status or "")
 				end,
 				cond = function()
 					return #require("sidekick.status").cli() > 0
