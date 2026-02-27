@@ -36,13 +36,6 @@ return {
 				mode = { "n", "t", "i", "x" },
 			},
 			{
-				"<leader>ac",
-				function()
-					require("sidekick.cli").toggle({ name = "copilot", focus = true })
-				end,
-				desc = "Sidekick Toggle Copilot",
-			},
-			{
 				"<leader>ao",
 				function()
 					require("sidekick.cli").toggle({ name = "opencode", focus = true })
