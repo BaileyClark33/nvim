@@ -15,6 +15,15 @@ return {
 	},
 	{
 		"folke/sidekick.nvim",
+		opts = {
+			cli = {
+				win = {
+					split = {
+						width = 0.4,
+					},
+				},
+			},
+		},
 		keys = {
 			{
 				"<A-i>",
